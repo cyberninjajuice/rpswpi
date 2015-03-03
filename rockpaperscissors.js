@@ -4,8 +4,8 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
-    if (prompt() === 'rock') || (prompt()=== 'paper') || (prompt()=== 'scissors'){
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
+    if ((prompt() === 'rock') || (prompt()=== 'paper') || (prompt()=== 'scissors')){
     return prompt();
     } else {
         return "error";
@@ -28,7 +28,7 @@ function getPlayerMove(move) {
     // However, if `move` is not specified / is null, your expression should equal `getInput()`.
     if (move==undefined){
         return getInput();
-    } else if (move==="rock")||(move==="paper")||(move==="scissors"){
+    } else if ((move==="rock")||(move==="paper")||(move==="scissors")){
         return this.move;
     } else {
         console.log("hmm I'm not understanding something!");
@@ -42,7 +42,7 @@ function getComputerMove(move) {
     // However, if `move` is not specified / is null, your expression should equal `randomPlay()`.
     if (move==undefined){
         return randomPlay();
-    } else if (move==="rock")||(move==="paper")||(move==="scissors"){
+    } else if ((move==="rock")||(move==="paper")||(move==="scissors")){
         return this.move;
     } else {
         console.log("hmm I'm not understanding something!");
@@ -81,8 +81,7 @@ function getWinner(playerMove,computerMove) {
     } else {
         return "error";
     }
-    return compWins;
-    return playerWins;
+    return compWins&&playerWins;
 }
 
 function playToFive() {
@@ -91,10 +90,9 @@ function playToFive() {
     /* YOUR CODE HERE */
     var compWins=0;
     var playerWins=0;
-    while (compWins<5===true)&&(playerWins<5===true) {
+    while ((compWins<5===true)||(playerWins<5===true)) {
         getWinner(getPlayerMove, getComputerMove);
         }
     return [playerWins, compWins];
 }
 playToFive();
-
