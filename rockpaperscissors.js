@@ -1,8 +1,12 @@
 function getInput() {
     var input =prompt("Please choose either rock, paper, or scissors.");
-    console.log(input);
-    return input;
+    if ((input==="rock")|| (input==="paper") || (input==="scissors")){
+        return input;
+    } else {
+        return getInput(); 
     }
+} //simple function which yields the result of the user's prompt
+
 function randomPlay() {
     var randomNumber = Math.random();
     if (randomNumber <= 0.33) {
@@ -12,21 +16,24 @@ function randomPlay() {
     } else {
         return "scissors";
     }
-}
+} //simple function which yields either rock paper or scissors
+
 //console.log(getInput());
 //console.log(randomPlay());
+
 function getPlayerMove(move) {
     // If a `move` has a value, your expression should evaluate to that value
     if ((move===undefined)||(move===null)){
         return getInput();
     } else {
         //console.log("hmm I'm not understanding something!");
-        return getInput();
-    }
-}
+        return move;
+    } 
+} //function which takes getInput's yield and uses it to say the player's move assuming that was not entered.
+
 function getComputerMove(move) {
     //If `move` is not specified / is null, your expression should equal `randomPlay()`.
-    if (move==undefined){
+    if ((move===undefined) || (move===null)){
         return randomPlay();
     } else if ((move==="rock")||(move==="paper")||(move==="scissors")){
         return move;
@@ -34,39 +41,41 @@ function getComputerMove(move) {
         //console.log("hmm I'm not understanding something!");
         return "errorofcomp";
     }
-}
+} //function which takes randomPlay and uses it to determine what the computer will do assuming it wasn't entered.
+
 //console.log(getComputerMove())
+
 function getWinner(playerMove,computerMove) {
     var winner;
     // Write code that will set winner to either 'player', 'computer', or 'tie' based on the values of playerMove and computerMove.
-    if (playerMove===computerMove){
-        winner='tie';
+    if (playerMove === computerMove){
+        winner="tie";
     } else if (playerMove==="rock"){
         if (computerMove==="paper"){
-            winner='computer';
+            winner="computer";
         } else if (computerMove==="scissors"){
-            winner='player';
+            winner="player";
         }
     } else if (playerMove==="paper"){
         if (computerMove==="scissors"){
             //console.log("computerps");
-            winner='computer';
+            winner="computer";
         } else if (computerMove==="rock"){
-            winner='player';
+            winner="player";
         }
     } else if (playerMove==="scissors"){
         if (computerMove==="rock"){
             //console.log("computersr");
-            winner='computer';
+            winner="computer";
         } else if (computerMove==="paper"){
-            winner='player';
+            winner="player";
         }
     } else {
-        winner='errorgetwinner';
+        winner="errorgetwinner";
     }
     //console.log(winner);
     return winner;
-}
+}//function which returns variable winner (which should be either player, computer, or tie)
 //if (getWinner(getPlayerMove(),getComputerMove())==="player"){console.log("yes");}
 //console.log(getWinner(getPlayerMove(),getComputerMove()));
 
@@ -77,7 +86,7 @@ function playTo(x) {
     var compWins=0;
     var playerWins=0;
     var ties=0;
-    do {
+    while ( (compWins<x) || (playerWins<x) ) {
         if (getWinner(getPlayerMove(null),getComputerMove(null) )==='player'){
             //console.log("player");
             playerWins=playerWins+1;
@@ -91,8 +100,7 @@ function playTo(x) {
         else {
             return 'errorPlayto';
         }
-    
-    } while ((playerWins<x)||(compWins<x));
-    return [playerWins, compWins, ties];
+    }
+    return [compWins, playerWins];
 }
 playTo(5);
