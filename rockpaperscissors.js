@@ -56,43 +56,47 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     /* YOUR CODE HERE */
-    var compWins=0;
-    var playerWins=0;
     if (playerMove===computerMove){
         return tie;
     } else if (playerMove==="rock"){
         if (computerMove==="paper"){
-            return compWins++;
+            winner='computer';
         } else if (computerMove==="scissors"){
-        return playerWins++;
+            winner='player';
         }
     } else if (playerMove==="paper"){
         if (computerMove==="scissors"){
-            return compWins++;
+            winner='computer';
         } else if (computerMove==="rock"){
-            return playerWins++;
+            winner='player';
         }
     } else if (playerMove==="scissors"){
         if (computerMove==="rock"){
-            return compWins++;
+            winner='computer';
         } else if (computerMove==="paper"){
-            return playerWins++;
+            winner='player';
         }
     } else {
         return "error";
     }
-    return compWins&&playerWins;
+    return winner;
 }
 
-function playToFive() {
+function playTo(x) {
     console.log("Let's play Rock, Paper, Scissors");
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     /* YOUR CODE HERE */
     var compWins=0;
     var playerWins=0;
-    while ((compWins<5===true)||(playerWins<5===true)) {
-        getWinner(getPlayerMove, getComputerMove);
+    while ((compWins<=x===true)||(playerWins<=x===true)) {
+        if (getWinner( getPlayerMove(),getComputerMove() )==='player'){
+            playerWins++;
+        }else if (getWinner(getPlayerMove(),getComputerMove())==='computer'){
+            compWins++;
+        } else {
+            return error;
         }
+    }
     return [playerWins, compWins];
 }
-playToFive();
+playTo(5);
