@@ -86,21 +86,22 @@ function playTo(x) {
     var compWins=0;
     var playerWins=0;
     var ties=0;
-    while ( (compWins<x) || (playerWins<x) ) {
-        if ( getWinner( getPlayerMove(), getComputerMove() )==='player'){
+    var error=0;
+    while ( (compWins<x) || (playerWins<x) || (error<x) ) {
+        var response = getWinner(getPlayerMove(), getComputerMove());
+        if ( response==="player"){
             //console.log("player");
             playerWins=playerWins+1;
-        } else if ( getWinner( getPlayerMove(), getComputerMove() )==='computer'){
+        } else if ( response==="computer"){
             //console.log("computer");
             compWins=compWins+1;
-        } else if ( getWinner( getPlayerMove(), getComputerMove() )==='tie') {
+        } else if ( response==="tie") {
             //console.log("tie");
             ties=ties+1;
         }
         else {
-            return 'errorPlayto';
+            error=error+1;
         }
     }
     return [compWins, playerWins];
 }
-playTo(5);
