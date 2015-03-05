@@ -87,21 +87,29 @@ function playTo(x) {
     var playerWins=0;
     var ties=0;
     var error=0;
-    while ( (compWins<x) || (playerWins<x) || (error<x) ) {
+    while ( (compWins<x) && (playerWins<x) && (error<x) ) {
         var response = getWinner(getPlayerMove(), getComputerMove());
         if ( response==="player"){
             //console.log("player");
             playerWins=playerWins+1;
+            alert("You won another one! you can do it! It is "+[compWins]+ " computer to your "+[playerWins]+" wins!");
         } else if ( response==="computer"){
             //console.log("computer");
             compWins=compWins+1;
+            alert("Computer bested you there "+[compWins]+ " wins. You are at: "+[playerWins]+"!");
         } else if ( response==="tie") {
             //console.log("tie");
             ties=ties+1;
+            alert("Still tied up here at the bottom of the 9th with "+[compWins]+ " to your "+[playerWins]+" wins!");
         }
         else {
             error=error+1;
         }
+    }
+    if (compWins>playerWins){
+        alert("The computer has won! "+[computerWins]+" to " + [playerWins] +" Better luck next time!");
+    }else if(playerWins>compWins){
+        alert("You win! Hence you are the greatest! Play again simply by clicking play to 5!");
     }
     return [compWins, playerWins];
 }
