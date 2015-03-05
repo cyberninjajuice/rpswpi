@@ -87,13 +87,13 @@ function playTo(x) {
     var playerWins=0;
     var ties=0;
     while ( (compWins<x) || (playerWins<x) ) {
-        if (getWinner(getPlayerMove(null),getComputerMove(null) )==='player'){
+        if ( getWinner( getPlayerMove(), getComputerMove() )==='player'){
             //console.log("player");
             playerWins=playerWins+1;
-        } else if (getWinner(getPlayerMove(null),getComputerMove(null))==='computer'){
+        } else if ( getWinner( getPlayerMove(), getComputerMove() )==='computer'){
             //console.log("computer");
             compWins=compWins+1;
-        } else if (getWinner(getPlayerMove(null), getComputerMove(null))==='tie') {
+        } else if ( getWinner( getPlayerMove(), getComputerMove() )==='tie') {
             //console.log("tie");
             ties=ties+1;
         }
